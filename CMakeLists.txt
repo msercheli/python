@@ -22,6 +22,7 @@ set(python_version $ENV{REZ_BUILD_PROJECT_VERSION})
 rez_set_archive(
     url_python python/Python-${python_version}.tgz
     http://www.python.org/ftp/python/${python_version}/Python-${python_version}.tgz
+)
 
 ExternalProject_add(
     python
