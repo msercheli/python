@@ -2,7 +2,7 @@
 
 name = "python"
 
-version = "2.7.5"
+version = "2.7.16"
 
 authors = ["Guido van Rossum"]
 
@@ -29,5 +29,6 @@ def commands():
     env.LD_LIBRARY_PATH.prepend("{root}/lib")
     if building:
         env.CMAKE_MODULE_PATH.append("{root}/cmake")
+        env.REZ_BUILD_PROJECT_VERSION = this.version
 
 uuid = "repository.python"

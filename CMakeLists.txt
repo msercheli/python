@@ -19,10 +19,31 @@ include(ExternalProject)
 # ------------------------------------------------------------------------------
 
 set(python_version $ENV{REZ_BUILD_PROJECT_VERSION})
+#string(REPLACE "." "_" python_version_modified ${python_version})
+
+# ------------------------------------------------------------------------------
+message("=====================================================================")
+# Print environment variables
+#execute_process(COMMAND "${CMAKE_COMMAND}" "-E" "environment")
+
+# Print CMake variables
+#get_cmake_property(_variableNames VARIABLES)
+#list (SORT _variableNames)
+#foreach (_variableName ${_variableNames})
+#message(STATUS "${_variableName}=${${_variableName}}")
+#endforeach()
+message("=====================================================================")
+# ------------------------------------------------------------------------------
+
 rez_set_archive(
     url_python python/Python-${python_version}.tgz
     http://www.python.org/ftp/python/${python_version}/Python-${python_version}.tgz
 )
+
+message("=====================================================================")
+message(STATUS "payload = ${url_python}")
+message("=====================================================================")
+
 
 ExternalProject_add(
     python
