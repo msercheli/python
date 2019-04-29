@@ -22,7 +22,7 @@ set(python_version $ENV{REZ_BUILD_PROJECT_VERSION})
 #string(REPLACE "." "_" python_version_modified ${python_version})
 
 # ------------------------------------------------------------------------------
-message("=====================================================================")
+#message("=====================================================================")
 # Print environment variables
 #execute_process(COMMAND "${CMAKE_COMMAND}" "-E" "environment")
 
@@ -32,22 +32,21 @@ message("=====================================================================")
 #foreach (_variableName ${_variableNames})
 #message(STATUS "${_variableName}=${${_variableName}}")
 #endforeach()
-message("=====================================================================")
+#message("=====================================================================")
 # ------------------------------------------------------------------------------
 
-rez_set_archive(
-    url_python python/Python-${python_version}.tgz
-    http://www.python.org/ftp/python/${python_version}/Python-${python_version}.tgz
-)
+#rez_set_archive(
+#    url_python python/Python-${python_version}.tgz
+#    http://www.python.org/ftp/python/${python_version}/Python-${python_version}.tgz
+#)
 
-message("=====================================================================")
-message(STATUS "payload = ${url_python}")
-message("=====================================================================")
-
+# I am having issues extracting the tar file, so, I untar myself and I am
+# pointing to the extracted folder here.
 
 ExternalProject_add(
     python
-    URL url_python
+    #URL url_python
+    SOURCE_DIR "/home/marcelo/Dev/payload/python/Python-2.7.5"
     PREFIX python
     UPDATE_COMMAND ""
     CONFIGURE_COMMAND ./configure --prefix=${CMAKE_INSTALL_PREFIX} --enable-shared --enable-ipv6 --enable-unicode=ucs4  LDFLAGS=-Wl,-rpath,'$$ORIGIN/../lib/'
@@ -57,8 +56,8 @@ ExternalProject_add(
     BUILD_IN_SOURCE 1
 )
 
-install(
-    FILES cmake/FindPython.cmake cmake/python.cmake
-    DESTINATION cmake
-)
+#install(
+#    FILES cmake/FindPython.cmake cmake/python.cmake
+#    DESTINATION cmake
+#)
 
